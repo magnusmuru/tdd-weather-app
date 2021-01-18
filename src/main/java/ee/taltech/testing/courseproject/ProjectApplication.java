@@ -1,4 +1,4 @@
-package com.taltech.testing.project;
+package ee.taltech.testing.courseproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

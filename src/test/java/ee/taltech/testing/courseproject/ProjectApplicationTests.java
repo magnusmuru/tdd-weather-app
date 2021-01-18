@@ -1,4 +1,4 @@
-package com.taltech.testing.project;
+package ee.taltech.testing.courseproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
