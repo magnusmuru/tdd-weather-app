@@ -9,16 +9,8 @@ stages:
 
 build:
   stage: build
-  script: gradle --build-cache assemble
-  cache:
-    paths:
-      - build
-      - .gradle
+  script: ./gradlew assemble
 
 test:
   stage: test
-  script: gradle check
-  cache:
-    paths:
-      - build
-      - .gradle
+  script: ./gradlew check
