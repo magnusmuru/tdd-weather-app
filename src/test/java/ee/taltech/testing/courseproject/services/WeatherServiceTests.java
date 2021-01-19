@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class ServiceTests {
+public class WeatherServiceTests {
 
     private static WeatherReportService weatherReportService;
 
