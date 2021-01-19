@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ServiceTests {
 
@@ -27,4 +28,14 @@ public class ServiceTests {
 
         assertEquals(weatherReport.getWeatherReportDetails().getCity(), expectedCity);
     }
+
+    @Test
+    public void shouldReturnNoReportInCaseOfBadCityName() throws IOException {
+        String city = "Karbanalanda";
+
+        Report weatherReport = weatherReportService.getCityDetails(city);
+
+        assertNull(weatherReport);
+    }
+
 }
