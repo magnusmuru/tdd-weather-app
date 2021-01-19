@@ -2,12 +2,12 @@ stages:
   - build
   - test
 build:
-  image: maven:3.6.3-jdk-8
+  image: gradle:alpine
   stage: build
   script:
-    - chmod +x ./gradlew assemble
+    - ./gradlew assemble
 tests:
-  image: maven:3.6.3-jdk-8
+  image: gradle:alpine
   stage: test
   script:
-    - chmod +x ./gradlew test
+    - ./gradlew test
