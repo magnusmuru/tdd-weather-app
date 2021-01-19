@@ -23,6 +23,10 @@ public class WeatherAPI {
         return "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + configuration.getApiKey();
     }
 
+    private String currentForecastUrl(String city) {
+        return "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + configuration.getApiKey();
+    }
+
     public CityDTO getCityLocaleDetails(String city) throws IOException {
         Request request = new Request.Builder().url(currentWeatherUrl(city)).build();
 
@@ -34,7 +38,14 @@ public class WeatherAPI {
         }
     }
 
-    public ForecastDTO getForecast(String city) {
-        return null;
+    public ForecastDTO getForecast(String city) throws IOException {
+        Request request = new Request.Builder().url(currentForecastUrl(city)).build();
+
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful()) {
+            return mapper.readValue(response.body().byteStream(), ForecastDTO.class);
+        } else {
+            return null;
+        }
     }
 }
