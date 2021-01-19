@@ -49,6 +49,7 @@ public class WeatherReportService {
         ForecastDTO forecastDTO = weatherAPI.getForecast(city);
 
         if (forecastDTO != null) {
+
         }
 
         return weatherReport;
