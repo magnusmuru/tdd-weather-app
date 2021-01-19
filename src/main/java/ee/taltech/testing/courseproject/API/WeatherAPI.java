@@ -44,6 +44,10 @@ public class WeatherAPI {
         Request request = new Request.Builder().url(currentWeatherUrl(city)).build();
 
         Response response = client.newCall(request).execute();
-        return mapper.readValue(response.body().byteStream(), CityDTO.class);
+        if (response.isSuccessful()) {
+            return mapper.readValue(response.body().byteStream(), CityDTO.class);
+        } else {
+            return null;
+        }
     }
 }
