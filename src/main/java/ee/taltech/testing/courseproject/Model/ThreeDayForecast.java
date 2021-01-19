@@ -15,21 +15,34 @@ public class ThreeDayForecast {
             Weather oneDay = new Weather();
             Weather twoDay = new Weather();
             Weather threeDay = new Weather();
+            int firstDayCounter = 0;
 
             for (ForecastItemDTO item : forecasts) {
                 if (!forecastDays.contains(item.getDt().getFormattedDate())) {
                     forecastDays.add(item.getDt().getFormattedDate());
+                } if(forecastDays.size() > 0) {
+                    if (item.getDt().getFormattedDate().equals(forecastDays.get(0))) {
+                        firstDayCounter += 1;
+                    }
                 }
             }
-            if (forecastDays.size() > 0) {
-                oneDay = getAllOneDayForecasts(forecasts, forecastDays.get(1));
-                twoDay = getAllOneDayForecasts(forecasts, forecastDays.get(2));
-                threeDay = getAllOneDayForecasts(forecasts, forecastDays.get(3));
+
+            int dayIndex = 1;
+            if (firstDayCounter == 8) {
+                dayIndex = 0;
             }
+
+            if (forecastDays.size() > 0) {
+
+                oneDay = getAllOneDayForecasts(forecasts, forecastDays.get(dayIndex));
+                twoDay = getAllOneDayForecasts(forecasts, forecastDays.get(dayIndex + 1));
+                threeDay = getAllOneDayForecasts(forecasts, forecastDays.get(dayIndex + 2));
+            }
+
             List<ForecastReport> reportList = new ArrayList<>();
-            reportList.add(ForecastReport.builder().date(forecastDays.get(1)).weather(oneDay).build());
-            reportList.add(ForecastReport.builder().date(forecastDays.get(2)).weather(twoDay).build());
-            reportList.add(ForecastReport.builder().date(forecastDays.get(3)).weather(threeDay).build());
+            reportList.add(ForecastReport.builder().date(forecastDays.get(dayIndex)).weather(oneDay).build());
+            reportList.add(ForecastReport.builder().date(forecastDays.get(dayIndex + 1)).weather(twoDay).build());
+            reportList.add(ForecastReport.builder().date(forecastDays.get(dayIndex + 2)).weather(threeDay).build());
 
             return reportList;
         }
