@@ -23,15 +23,6 @@ public class APITests {
     }
 
     @Test
-    public void connectToOWMAndPullLocalDetails() throws IOException {
-        String city = "Tallinn";
-
-        WeatherReportDetails weatherReportDetails = weatherAPI.getCityDetails(city);
-
-        assertEquals(weatherReportDetails.getCity(), city);
-    }
-
-    @Test
     public void checkIfCityLocaleDetailsAreCorrect() throws IOException {
         String city = "Tallinn";
 
@@ -73,6 +64,7 @@ public class APITests {
         CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
 
         assertEquals(dateFormatter.format(expectedDate), cityDTO.getDt().getFormattedDate());
-
     }
+
+
 }
