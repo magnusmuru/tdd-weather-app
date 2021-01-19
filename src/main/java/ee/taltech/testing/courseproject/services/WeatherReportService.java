@@ -40,4 +40,10 @@ public class WeatherReportService {
             return null;
         }
     }
+
+    public Report getForecast(String city) {
+        Report weatherReport = null;
+
+        return weatherReport;
+    }
 }

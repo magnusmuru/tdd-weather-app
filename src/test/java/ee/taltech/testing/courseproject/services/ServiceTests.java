@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -37,6 +38,15 @@ public class ServiceTests {
         Report weatherReport = weatherReportService.getCityDetails(city);
 
         assertNull(weatherReport);
+    }
+
+    @Test
+    public void getForecastFromService() throws IOException {
+        String city = "Tartu";
+
+        Report forecastReport = weatherReportService.getForecast(city);
+
+        assertThat(forecastReport).isNotNull();
     }
 
 }
