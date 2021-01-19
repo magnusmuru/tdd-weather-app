@@ -15,7 +15,7 @@ import java.io.IOException;
 @AllArgsConstructor
 public class WeatherReportService {
 
-    private WeatherAPI weatherAPI;
+    private final WeatherAPI weatherAPI;
 
     public Report getCityDetails(String city) throws IOException {
         Report weatherReport = new Report();

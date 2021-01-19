@@ -39,5 +39,7 @@ public class ServiceMockTest {
         Report weatherReport = weatherReportService.getCityDetails(city);
 
         assertEquals(96, weatherReport.getCurrentWeatherReport().getHumidity());
+        assertEquals("2021-01-19", weatherReport.getCurrentWeatherReport().getDate());
+        assertEquals("Narva", weatherReport.getWeatherReportDetails().getCity());
     }
 }
