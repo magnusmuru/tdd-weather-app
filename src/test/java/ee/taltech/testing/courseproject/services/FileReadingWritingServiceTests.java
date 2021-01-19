@@ -40,7 +40,7 @@ public class FileReadingWritingServiceTests {
 
         Configuration configuration = new Configuration();
 
-        fileReadWriteService.writeWeatherReport();
+        fileReadWriteService.writeWeatherReport(expectedCity);
 
         Path path = Paths.get(configuration.getWorkingPath() + expectedCity.toLowerCase() + ".json");
 

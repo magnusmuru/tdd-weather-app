@@ -1,5 +1,6 @@
 package ee.taltech.testing.courseproject.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.DTO.ForecastDTO;
@@ -9,9 +10,13 @@ import ee.taltech.testing.courseproject.Model.ForecastReport;
 import ee.taltech.testing.courseproject.Model.Report;
 import ee.taltech.testing.courseproject.Model.ThreeDayForecast;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
+import ee.taltech.testing.courseproject.exceptions.FailedResponseException;
 import lombok.AllArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Service
@@ -19,6 +24,7 @@ import java.io.IOException;
 public class WeatherReportService {
 
     private final WeatherAPI weatherAPI;
+    static Log log = LogFactory.getLog(WeatherReportService.class.getName());
 
     public Report getCityDetails(String city) throws IOException {
         Report weatherReport = new Report();
@@ -55,6 +61,25 @@ public class WeatherReportService {
             return weatherReport;
         } else {
             return null;
+        }
+    }
+
+    public String fetchWeatherReport(String city) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Report localeReport = this.getCityDetails(city);
+        Report forecastReport = this.getForecast(city);
+
+        if (localeReport != null && forecastReport != null) {
+            log.info("Success");
+            Report weatherReport = Report.builder()
+                    .weatherReportDetails(localeReport.getWeatherReportDetails())
+                    .currentWeatherReport(localeReport.getCurrentWeatherReport())
+                    .forecastReport(forecastReport.getForecastReport())
+                    .build();
+            return objectMapper.writeValueAsString(weatherReport);
+        } else {
+            throw new FailedResponseException("API request for city " + city + " failed");
         }
     }
 }
