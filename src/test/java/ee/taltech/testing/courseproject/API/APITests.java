@@ -8,18 +8,19 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class APITests {
 
     private static WeatherAPI weatherAPI;
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
         weatherAPI = new WeatherAPI();
     }
 
     @Test
-    public void connectToOWMAndPullLocalDetails() {
+    public void connectToOWMAndPullLocalDetails() throws IOException {
         String city = "Tallinn";
 
         WeatherReportDetails weatherReportDetails = weatherAPI.getCityDetails(city);
@@ -40,5 +41,14 @@ public class APITests {
         assertEquals(expectedLat, cityDTO.getCoord().getLat());
         assertEquals(expectedLon, cityDTO.getCoord().getLon());
         assertEquals(expectedCity, cityDTO.getName());
+    }
+
+    @Test
+    public void checkForLocaleForCityThatDoesNotExist() throws IOException {
+        String city = "Salabara";
+
+        CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
+
+        assertNull(cityDTO);
     }
 }
