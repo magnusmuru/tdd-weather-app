@@ -1,13 +1,24 @@
+image: gradle:alpine
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
 stages:
   - build
   - test
+
 build:
-  image: gradle:alpine
   stage: build
-  script:
-    - chmod +x ./gradlew assemble
-tests:
-  image: gradle:alpine
+  script: gradle --build-cache assemble
+  cache:
+    paths:
+      - build
+      - .gradle
+
+test:
   stage: test
-  script:
-    - chmod +x ./gradlew test
+    script: gradle check
+    cache:
+      paths:
+        - build
+        - .gradle
