@@ -16,5 +16,5 @@ import java.util.List;
 public class ForecastDTO {
     private int cod;
     private Object message;
-    private List<ForecastItemDTO> forecasts;
+    private List<ForecastItemDTO> list;
 }
