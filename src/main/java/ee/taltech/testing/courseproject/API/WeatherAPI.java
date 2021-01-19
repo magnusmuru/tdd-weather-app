@@ -14,9 +14,9 @@ import java.io.IOException;
 @Service
 public class WeatherAPI {
 
-    private Configuration configuration = new Configuration();
-    private ObjectMapper mapper = new ObjectMapper();
-    private OkHttpClient client = new OkHttpClient();
+    private final Configuration configuration = new Configuration();
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final OkHttpClient client = new OkHttpClient();
 
 
     private String currentWeatherUrl(String city) {

@@ -71,7 +71,7 @@ public class WeatherReportService {
         Report forecastReport = this.getForecast(city);
 
         if (localeReport != null && forecastReport != null) {
-            log.info("Success");
+            log.info("Success from gathering data from API");
             Report weatherReport = Report.builder()
                     .weatherReportDetails(localeReport.getWeatherReportDetails())
                     .currentWeatherReport(localeReport.getCurrentWeatherReport())

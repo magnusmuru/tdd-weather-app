@@ -40,7 +40,7 @@ public class FileReadWriteService {
     public void writeWeatherReport(String cityName) {
         String filePath = configuration.getWorkingPath() + cityName.toLowerCase() + ".json";
         if (new File(filePath).exists()) {
-            log.info("File already exists, overwriting!");
+            log.info("File already exists for city " + cityName + ", overwriting!");
         }
         try {
             String outputJson = weatherReportService.fetchWeatherReport(cityName);
