@@ -1,9 +1,14 @@
 package ee.taltech.testing.courseproject.services;
 
+import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.configuration.Configuration;
 import ee.taltech.testing.courseproject.exceptions.InvalidInputPathException;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -14,7 +19,9 @@ import java.util.List;
 @Service
 public class FileReadWriteService {
 
+    private final WeatherReportService weatherReportService = new WeatherReportService(new WeatherAPI());
     private final Configuration configuration = new Configuration();
+    static Log log = LogFactory.getLog(FileReadWriteService.class.getName());
 
     public List<String> getInputFileContents() throws InvalidInputPathException, IOException {
         if (!configuration.getWorkingFile().endsWith(".txt")) {
@@ -30,6 +37,19 @@ public class FileReadWriteService {
         }
     }
 
-    public void writeWeatherReport() {
+    public void writeWeatherReport(String cityName) {
+        String filePath = configuration.getWorkingPath() + cityName.toLowerCase() + ".json";
+        if (new File(filePath).exists()) {
+            log.info("File already exists, overwriting!");
+        }
+        try {
+            String outputJson = weatherReportService.fetchWeatherReport(cityName);
+            FileWriter writer = new FileWriter(filePath);
+            writer.write(outputJson);
+            writer.close();
+            log.info("Weather report generated for city " + cityName);
+        } catch (Exception e) {
+            log.error("Failed to get weather report for city " + cityName);
+        }
     }
 }
