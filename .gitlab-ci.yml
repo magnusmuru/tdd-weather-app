@@ -5,9 +5,9 @@ build:
   image: gradle:alpine
   stage: build
   script:
-    - ./gradlew assemble
+    - chmod +x ./gradlew assemble
 tests:
   image: gradle:alpine
   stage: test
   script:
-    - ./gradlew test
+    - chmod +x ./gradlew test
