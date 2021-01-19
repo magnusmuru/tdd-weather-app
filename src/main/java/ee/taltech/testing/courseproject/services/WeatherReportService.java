@@ -3,6 +3,7 @@ package ee.taltech.testing.courseproject.services;
 import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.Model.Coordinate;
+import ee.taltech.testing.courseproject.Model.Report;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class WeatherReportService {
 
     private WeatherAPI weatherAPI = new WeatherAPI();
 
-    public WeatherReportDetails getCityDetails(String city) throws IOException {
+    public Report getCityDetails(String city) throws IOException {
         WeatherReportDetails weatherReportDetails = new WeatherReportDetails();
         CityDTO cityLocale = weatherAPI.getCityLocaleDetails(city);
         if (cityLocale != null) {
@@ -22,7 +23,7 @@ public class WeatherReportService {
             Coordinate coordinate = new Coordinate();
             weatherReportDetails.setCoordinates(coordinate.getCoordinatesAsString(cityLocale.getCoord().getLon(), cityLocale.getCoord().getLat()));
 
-            return weatherReportDetails;
+            return new Report();
         } else {
             return null;
         }

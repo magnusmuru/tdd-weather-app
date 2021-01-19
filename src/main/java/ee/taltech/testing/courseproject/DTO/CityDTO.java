@@ -1,7 +1,6 @@
 package ee.taltech.testing.courseproject.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import ee.taltech.testing.courseproject.Model.Weather;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

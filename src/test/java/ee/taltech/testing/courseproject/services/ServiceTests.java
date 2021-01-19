@@ -1,7 +1,6 @@
 package ee.taltech.testing.courseproject.services;
 
-import ee.taltech.testing.courseproject.API.WeatherAPI;
-import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
+import ee.taltech.testing.courseproject.Model.Report;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +21,8 @@ public class ServiceTests {
     public void connectToOWMAndPullLocalDetails() throws IOException {
         String city = "Tallinn";
 
-        WeatherReportDetails weatherReportDetails = weatherReportService.getCityDetails(city);
+        Report weatherReport = weatherReportService.getCityDetails(city);
 
-        assertEquals(weatherReportDetails.getCity(), city);
+        assertEquals(weatherReport.getWeatherReportDetails().getCity(), city);
     }
 }
