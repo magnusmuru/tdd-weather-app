@@ -21,8 +21,10 @@ public class ServiceTests {
     public void connectToOWMAndPullLocalDetails() throws IOException {
         String city = "Tallinn";
 
+        String expectedCity = "Tallinn";
+
         Report weatherReport = weatherReportService.getCityDetails(city);
 
-        assertEquals(weatherReport.getWeatherReportDetails().getCity(), city);
+        assertEquals(weatherReport.getWeatherReportDetails().getCity(), expectedCity);
     }
 }
