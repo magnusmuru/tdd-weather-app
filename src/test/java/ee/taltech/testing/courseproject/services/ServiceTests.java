@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,7 +35,7 @@ public class ServiceTests {
     }
 
     @Test
-    public void shouldReturnNoReportInCaseOfBadCityName() throws IOException {
+    public void shouldReturnNoReportInCaseOfUnknownCityName() throws IOException {
         String city = "Karbanalanda";
 
         Report weatherReport = weatherReportService.getCityDetails(city);
@@ -47,6 +50,35 @@ public class ServiceTests {
         Report forecastReport = weatherReportService.getForecast(city);
 
         assertThat(forecastReport).isNotNull();
+    }
+
+    @Test
+    public void shouldReturnNoForecastForUnknownCityName() throws IOException {
+        String city = "Acdccdca";
+
+        Report forecastReport = weatherReportService.getForecast(city);
+
+        assertNull(forecastReport);
+    }
+
+    @Test
+    public void threeDayForecastIsOfNextThreeDays() throws IOException {
+        String city = "Rapla";
+
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date todayDate = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(todayDate);
+        String expectedDay;
+
+        Report forecastReport = weatherReportService.getForecast(city);
+
+        for (int i = 0; i < 3; i++) {
+            calendar.add(Calendar.DATE, 1);
+            expectedDay = dateFormatter.format(calendar.getTime());
+            assertEquals(forecastReport.getForecastReport().get(i).getDate(), expectedDay);
+        }
     }
 
 }
