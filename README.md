@@ -30,21 +30,17 @@ Lissabon
 
 Every city that has a valid name will have its report generated in the same folder following naming pattern `{city_name}.json`
 
-# Running the application
-
-To run the application locally just download the repository and navigate to the **root** directory of the project.
-
----
-
-In your preferred terminal run the following commands for the following actions
+# Running the application on CLI
 
 ### To run the application
+In the **root** directory run the following command
 ```
 ./gradlew bootRun
 ```
 This will run the application and generate reports on Cities that are currently in your `/input/input.txt`
 
 ### To run the application tests
+In the **root** directory run the following command
 ```
 ./gradlew test
 ```
