@@ -2,8 +2,10 @@ package ee.taltech.testing.courseproject.services;
 
 import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
+import ee.taltech.testing.courseproject.DTO.ForecastDTO;
 import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.CurrentWeatherReport;
+import ee.taltech.testing.courseproject.Model.ForecastReport;
 import ee.taltech.testing.courseproject.Model.Report;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
 import lombok.AllArgsConstructor;
@@ -41,8 +43,13 @@ public class WeatherReportService {
         }
     }
 
-    public Report getForecast(String city) {
-        Report weatherReport = null;
+    public Report getForecast(String city) throws IOException {
+        Report weatherReport = new Report();
+        ForecastReport forecastReport = new ForecastReport();
+        ForecastDTO forecastDTO = weatherAPI.getForecast(city);
+
+        if (forecastDTO != null) {
+        }
 
         return weatherReport;
     }
