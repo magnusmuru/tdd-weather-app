@@ -17,8 +17,8 @@ build:
 
 test:
   stage: test
-    script: gradle check
-    cache:
-      paths:
-        - build
-        - .gradle
+  script: gradle check
+  cache:
+    paths:
+      - build
+      - .gradle
