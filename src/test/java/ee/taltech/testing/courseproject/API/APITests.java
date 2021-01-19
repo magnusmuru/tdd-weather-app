@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -55,7 +56,7 @@ public class APITests {
     }
 
     @Test
-    public void getCityCurrentDate() throws IOException {
+    public void cityHasCurrentDate() throws IOException {
         String city = "Tartu";
 
         CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
