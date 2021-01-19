@@ -1,5 +1,6 @@
 package ee.taltech.testing.courseproject.services;
 
+import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.Model.Report;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class ServiceTests {
 
     @BeforeAll
     public static void setUp() {
-        weatherReportService = new WeatherReportService();
+        weatherReportService = new WeatherReportService(new WeatherAPI());
     }
 
     @Test

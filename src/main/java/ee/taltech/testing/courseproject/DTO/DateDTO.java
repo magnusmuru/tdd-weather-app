@@ -1,5 +1,6 @@
 package ee.taltech.testing.courseproject.DTO;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.sql.Date;

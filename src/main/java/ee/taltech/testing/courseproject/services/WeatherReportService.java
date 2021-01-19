@@ -6,14 +6,16 @@ import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.CurrentWeatherReport;
 import ee.taltech.testing.courseproject.Model.Report;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 @Service
+@AllArgsConstructor
 public class WeatherReportService {
 
-    private WeatherAPI weatherAPI = new WeatherAPI();
+    private WeatherAPI weatherAPI;
 
     public Report getCityDetails(String city) throws IOException {
         Report weatherReport = new Report();
@@ -30,7 +32,8 @@ public class WeatherReportService {
             currentWeatherReport.setDate(cityLocale.getDt().getFormattedDate());
             currentWeatherReport.setHumidity(cityLocale.getMain().getHumidity());
             currentWeatherReport.setPressure(cityLocale.getMain().getPressure());
-            currentWeatherReport.setTemperature(cityLocale.getMain().getTemp());
+            currentWeatherReport.setTemperature((int) cityLocale.getMain().getTemp());
+            weatherReport.setCurrentWeatherReport(currentWeatherReport);
 
             return weatherReport;
         } else {

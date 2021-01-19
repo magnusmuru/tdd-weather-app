@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WeatherDTO {
-    private int temp;
+    private double temp;
     private int pressure;
     private int humidity;
 }
