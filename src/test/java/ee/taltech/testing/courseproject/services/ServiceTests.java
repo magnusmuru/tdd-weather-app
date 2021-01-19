@@ -77,7 +77,7 @@ public class ServiceTests {
         for (int i = 0; i < 3; i++) {
             calendar.add(Calendar.DATE, 1);
             expectedDay = dateFormatter.format(calendar.getTime());
-            assertEquals(forecastReport.getForecastReport().get(i).getDate(), expectedDay);
+            assertEquals(expectedDay, forecastReport.getForecastReport().get(i).getDate());
         }
     }
 

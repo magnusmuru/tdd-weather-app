@@ -4,6 +4,7 @@ import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.DTO.CoordinateDTO;
 import ee.taltech.testing.courseproject.DTO.DateDTO;
+import ee.taltech.testing.courseproject.DTO.ForecastDTO;
 import ee.taltech.testing.courseproject.DTO.WeatherDTO;
 import ee.taltech.testing.courseproject.Model.Report;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -41,5 +43,27 @@ public class ServiceMockTest {
         assertEquals(96, weatherReport.getCurrentWeatherReport().getHumidity());
         assertEquals("2021-01-19", weatherReport.getCurrentWeatherReport().getDate());
         assertEquals("Narva", weatherReport.getWeatherReportDetails().getCity());
+    }
+
+    @Test
+    public void shouldReturnValidForecastForGivenCity() throws IOException {
+        WeatherReportService weatherReportService = new WeatherReportService(weatherAPIMock);
+        ForecastStubDataGenerator generator = new ForecastStubDataGenerator();
+
+        ForecastDTO forecastStub = ForecastDTO.builder()
+                .cod(200)
+                .message(0)
+                .list(generator.generateForecastStubData())
+                .build();
+
+        when(weatherAPIMock.getForecast(anyString())).thenReturn(forecastStub);
+
+        Report forecastReport = weatherReportService.getForecast("Tallinn");
+
+        assertThat(forecastReport.getForecastReport().size()).isEqualTo(3);
+        assertEquals(1001, forecastReport.getForecastReport().get(0).getWeather().getPressure());
+        assertEquals(1002, forecastReport.getForecastReport().get(1).getWeather().getPressure());
+        assertEquals(1003, forecastReport.getForecastReport().get(2).getWeather().getPressure());
+
     }
 }
