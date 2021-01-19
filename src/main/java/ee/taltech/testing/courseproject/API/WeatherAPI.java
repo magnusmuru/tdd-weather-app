@@ -2,8 +2,6 @@ package ee.taltech.testing.courseproject.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
-import ee.taltech.testing.courseproject.Model.Coordinate;
-import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
 import ee.taltech.testing.courseproject.configuration.Configuration;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

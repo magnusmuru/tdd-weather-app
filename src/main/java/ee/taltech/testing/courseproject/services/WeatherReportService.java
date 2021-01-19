@@ -4,7 +4,6 @@ import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
