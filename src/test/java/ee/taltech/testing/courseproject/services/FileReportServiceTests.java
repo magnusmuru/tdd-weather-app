@@ -1,27 +1,38 @@
 package ee.taltech.testing.courseproject.services;
 
+import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.configuration.Configuration;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class FileReportServiceTests {
 
-    @AfterEach
+    private static FileReportService fileReportService;
+    private static Configuration configuration;
+    private static FileWriter writer;
 
+    @BeforeAll
+    public static void setUp() throws IOException {
+        fileReportService = new FileReportService();
+        configuration = new Configuration();
+        writer = new FileWriter(configuration.getWorkingFile());
+    }
 
     @Test
     public void getReportsForAllCorrectCityInputs() throws IOException {
-        FileReportService fileReportService = new FileReportService();
-        Configuration configuration = new Configuration();
-        FileWriter writer = new FileWriter(configuration.getWorkingFile());
 
         List<String> cities = new ArrayList<>();
         cities.add("Tallinn");
@@ -43,10 +54,7 @@ public class FileReportServiceTests {
 
     @Test
     public void getReportsWithInvalidAndValidCityNames() throws IOException {
-        FileReportService fileReportService = new FileReportService();
-        Configuration configuration = new Configuration();
-        FileWriter writer = new FileWriter(configuration.getWorkingFile());
-
+        writer = new FileWriter(configuration.getWorkingFile());
         List<String> cities = new ArrayList<>();
         cities.add("Tallinn");
         cities.add("ZiguliCity");
@@ -71,11 +79,18 @@ public class FileReportServiceTests {
 
     @Test
     public void validateReportMainData() throws IOException {
-        FileReportService fileReportService = new FileReportService();
-        Configuration configuration = new Configuration();
-        FileWriter writer = new FileWriter(configuration.getWorkingFile());
+        writer = new FileWriter(configuration.getWorkingFile());
         writer.write("Narva");
+        writer.close();
 
+        fileReportService.generateReports();
+
+        Path path = Paths.get(configuration.getWorkingPath() + "narva.json");
+
+        String result = Files.readAllLines(path, StandardCharsets.UTF_8).get(0);
+
+        assertThat(result).contains("\"city\":\"Narva\"");
+        assertThat(result).contains("\"coordinates\":\"59.38, 28.19\"");
     }
 
 }
