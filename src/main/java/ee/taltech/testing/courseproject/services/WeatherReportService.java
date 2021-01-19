@@ -7,6 +7,7 @@ import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.CurrentWeatherReport;
 import ee.taltech.testing.courseproject.Model.ForecastReport;
 import ee.taltech.testing.courseproject.Model.Report;
+import ee.taltech.testing.courseproject.Model.ThreeDayForecast;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,12 +47,14 @@ public class WeatherReportService {
     public Report getForecast(String city) throws IOException {
         Report weatherReport = new Report();
         ForecastReport forecastReport = new ForecastReport();
+        ThreeDayForecast threeDayForecast = new ThreeDayForecast();
         ForecastDTO forecastDTO = weatherAPI.getForecast(city);
 
         if (forecastDTO != null) {
-
+            weatherReport.setForecastReport(threeDayForecast.getForecast(forecastDTO.getList()));
+            return weatherReport;
+        } else {
+            return null;
         }
-
-        return weatherReport;
     }
 }
