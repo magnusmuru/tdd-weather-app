@@ -1,8 +1,8 @@
-package ee.taltech.testing.courseproject.services;
+package ee.taltech.testing.courseproject.Model;
 
 import java.text.DecimalFormat;
 
-public class CoordinateService {
+public class Coordinate {
 
     public String getCoordinatesAsString(double inputLongitude, double inputLatitude) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");

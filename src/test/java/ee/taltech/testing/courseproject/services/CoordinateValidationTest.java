@@ -1,10 +1,11 @@
 package ee.taltech.testing.courseproject.services;
 
+import ee.taltech.testing.courseproject.Model.Coordinate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ServiceTest {
+public class CoordinateValidationTest {
 
     @Test
     public void shouldReturnValidCoordinateFormat() {
@@ -12,9 +13,9 @@ public class ServiceTest {
         double inputLongitude = 24.7535;
         double inputLatitude = 59.437;
 
-        CoordinateService coordinateService = new CoordinateService();
+        Coordinate coordinate = new Coordinate();
 
-        String resultCoordinates = coordinateService.getCoordinatesAsString(inputLongitude, inputLatitude);
+        String resultCoordinates = coordinate.getCoordinatesAsString(inputLongitude, inputLatitude);
 
         assertEquals(expectedCoordinates, resultCoordinates);
     }
