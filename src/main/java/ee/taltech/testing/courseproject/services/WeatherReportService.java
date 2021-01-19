@@ -6,7 +6,6 @@ import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.DTO.ForecastDTO;
 import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.CurrentWeatherReport;
-import ee.taltech.testing.courseproject.Model.ForecastReport;
 import ee.taltech.testing.courseproject.Model.Report;
 import ee.taltech.testing.courseproject.Model.ThreeDayForecast;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
@@ -16,7 +15,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Service
@@ -52,7 +50,6 @@ public class WeatherReportService {
 
     public Report getForecast(String city) throws IOException {
         Report weatherReport = new Report();
-        ForecastReport forecastReport = new ForecastReport();
         ThreeDayForecast threeDayForecast = new ThreeDayForecast();
         ForecastDTO forecastDTO = weatherAPI.getForecast(city);
 
