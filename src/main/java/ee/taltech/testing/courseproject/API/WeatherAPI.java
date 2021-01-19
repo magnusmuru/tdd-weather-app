@@ -5,14 +5,12 @@ import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.Model.Coordinate;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
 import ee.taltech.testing.courseproject.configuration.Configuration;
-import lombok.AllArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Service
 public class WeatherAPI {

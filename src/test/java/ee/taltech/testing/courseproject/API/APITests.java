@@ -6,7 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -50,5 +52,14 @@ public class APITests {
         CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
 
         assertNull(cityDTO);
+    }
+
+    @Test
+    public void getCityCurrentDate() throws IOException {
+        String city = "Tartu";
+
+        CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
+
+        assertThat(cityDTO.getDt()).isNotNull();
     }
 }

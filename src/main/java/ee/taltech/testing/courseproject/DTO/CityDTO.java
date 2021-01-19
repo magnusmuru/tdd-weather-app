@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class CityDTO {
     private String name;
     private CoordinateDTO coord;
+    private DateDTO dt;
 }
