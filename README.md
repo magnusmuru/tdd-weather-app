@@ -15,6 +15,7 @@
 # Providing input for the application
 
 All input should be put in the file called `input.txt` which is located inside the root directory folder called `input`
+Application supports only `.txt` file extension inputs.
 
 Provide city names in the following format:
 1) Each city name needs to be on its own line
