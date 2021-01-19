@@ -1,4 +1,4 @@
-package ee.taltech.testing.courseproject.services;
+package ee.taltech.testing.courseproject.Model;
 
 import ee.taltech.testing.courseproject.Model.Coordinate;
 import org.junit.jupiter.api.Test;
