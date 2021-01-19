@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 public class Configuration {
 
     private String apiKey = "1b1c8cb63ec2e4b7e011b4c2496a8163";
-    private String workingPath = "./input/input.txt";
+    private String workingFile = "./input/input.txt";
+    private String workingPath = "./input/";
 
     @Bean
     public ObjectMapper mapper() {

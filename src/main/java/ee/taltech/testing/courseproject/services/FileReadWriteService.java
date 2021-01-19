@@ -12,21 +12,24 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Service
-public class FileReadingService {
+public class FileReadWriteService {
 
     private final Configuration configuration = new Configuration();
 
     public List<String> getInputFileContents() throws InvalidInputPathException, IOException {
-        if (!configuration.getWorkingPath().endsWith(".txt")) {
+        if (!configuration.getWorkingFile().endsWith(".txt")) {
             String errorMessage = "Invalid input format, please use input.txt";
             throw new InvalidInputPathException(errorMessage);
         }
-        Path path = Paths.get(configuration.getWorkingPath());
+        Path path = Paths.get(configuration.getWorkingFile());
 
         if (path.toFile().isFile()) {
             return Files.readAllLines(path, StandardCharsets.UTF_8);
+        } else {
+            throw new InvalidInputPathException("File not present, please add input.txt to input folder");
         }
+    }
 
-        return null;
+    public void writeWeatherReport() {
     }
 }
