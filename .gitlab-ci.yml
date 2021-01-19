@@ -5,9 +5,9 @@ build:
   image: maven:3.6.3-jdk-8
   stage: build
   script:
-    - .\gradlew assemble
+    - ./gradlew assemble
 tests:
   image: maven:3.6.3-jdk-8
   stage: test
   script:
-    - .\gradlew test
+    - ./gradlew test
