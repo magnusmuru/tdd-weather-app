@@ -2,6 +2,7 @@ package ee.taltech.testing.courseproject.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.taltech.testing.courseproject.DTO.CityDTO;
+import ee.taltech.testing.courseproject.DTO.ForecastDTO;
 import ee.taltech.testing.courseproject.configuration.Configuration;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,5 +32,9 @@ public class WeatherAPI {
         } else {
             return null;
         }
+    }
+
+    public ForecastDTO getForecast(String city) {
+        return null;
     }
 }

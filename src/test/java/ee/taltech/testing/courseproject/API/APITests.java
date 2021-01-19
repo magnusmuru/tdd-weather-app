@@ -1,6 +1,7 @@
 package ee.taltech.testing.courseproject.API;
 
 import ee.taltech.testing.courseproject.DTO.CityDTO;
+import ee.taltech.testing.courseproject.DTO.ForecastDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +73,15 @@ public class APITests {
         CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
 
         assertThat(cityDTO.getMain()).isNotNull();
+    }
+
+    @Test
+    public void cityHasThreeDayWeatherData() throws IOException {
+        String city = "Tallinn";
+
+        ForecastDTO forecastDTO = weatherAPI.getForecast(city);
+
+        assertThat(forecastDTO).isNotNull();
     }
 
 
