@@ -1,6 +1,7 @@
 package ee.taltech.testing.courseproject.services;
 
 import ee.taltech.testing.courseproject.configuration.Configuration;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,19 +14,14 @@ import java.util.List;
 
 public class FileReportServiceTests {
 
-    private static FileReportService fileReportService;
-    private static Configuration configuration;
+    @AfterEach
 
-    @BeforeEach
-    public static void setUp() {
-        fileReportService = new FileReportService();
-        configuration = new Configuration();
-    }
 
     @Test
     public void getReportsForAllCorrectCityInputs() throws IOException {
-        String filePath = configuration.getWorkingFile();
-        FileWriter writer = new FileWriter(filePath);
+        FileReportService fileReportService = new FileReportService();
+        Configuration configuration = new Configuration();
+        FileWriter writer = new FileWriter(configuration.getWorkingFile());
 
         List<String> cities = new ArrayList<>();
         cities.add("Tallinn");
@@ -35,6 +31,7 @@ public class FileReportServiceTests {
         for (String city : cities) {
             writer.write(city + System.lineSeparator());
         }
+        writer.close();
 
         fileReportService.generateReports();
 
@@ -42,6 +39,43 @@ public class FileReportServiceTests {
             Path path = Paths.get(configuration.getWorkingPath() + city.toLowerCase() + ".json");
             assert(path.toFile().isFile());
         }
+    }
+
+    @Test
+    public void getReportsWithInvalidAndValidCityNames() throws IOException {
+        FileReportService fileReportService = new FileReportService();
+        Configuration configuration = new Configuration();
+        FileWriter writer = new FileWriter(configuration.getWorkingFile());
+
+        List<String> cities = new ArrayList<>();
+        cities.add("Tallinn");
+        cities.add("ZiguliCity");
+        cities.add("London");
+        cities.add("Bangladesh");
+        cities.add("Skyrim");
+
+        for (String city : cities) {
+            writer.write(city + System.lineSeparator());
+        }
+        writer.close();
+
+        fileReportService.generateReports();
+        cities.remove("Skyrim");
+        cities.remove("ZiguliCity");
+
+        for (String city : cities) {
+            Path path = Paths.get(configuration.getWorkingPath() + city.toLowerCase() + ".json");
+            assert(path.toFile().isFile());
+        }
+    }
+
+    @Test
+    public void validateReportMainData() throws IOException {
+        FileReportService fileReportService = new FileReportService();
+        Configuration configuration = new Configuration();
+        FileWriter writer = new FileWriter(configuration.getWorkingFile());
+        writer.write("Narva");
+
     }
 
 }
