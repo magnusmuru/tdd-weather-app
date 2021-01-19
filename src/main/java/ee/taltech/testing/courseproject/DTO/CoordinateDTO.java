@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CityDTO {
-    private String name;
-    private CoordinateDTO coord;
+public class CoordinateDTO {
+    private double lon;
+    private double lat;
 }

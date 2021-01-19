@@ -2,9 +2,10 @@ package ee.taltech.testing.courseproject.API;
 
 import ee.taltech.testing.courseproject.DTO.CityDTO;
 import ee.taltech.testing.courseproject.Model.WeatherReportDetails;
-import ee.taltech.testing.courseproject.configuration.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,7 +28,7 @@ public class APITests {
     }
 
     @Test
-    public void checkIfCityLocalDetailsAreCorrect() {
+    public void checkIfCityLocaleDetailsAreCorrect() throws IOException {
         String city = "Tallinn";
 
         double expectedLat = 59.437;
@@ -36,8 +37,8 @@ public class APITests {
 
         CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
 
-        assertEquals(expectedLat, cityDTO.getLat());
-        assertEquals(expectedLon, cityDTO.getLon());
+        assertEquals(expectedLat, cityDTO.getCoord().getLat());
+        assertEquals(expectedLon, cityDTO.getCoord().getLon());
         assertEquals(expectedCity, cityDTO.getName());
     }
 }
