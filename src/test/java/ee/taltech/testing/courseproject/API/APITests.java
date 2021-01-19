@@ -63,4 +63,16 @@ public class APITests {
 
         assertThat(cityDTO.getDt()).isNotNull();
     }
+
+    @Test
+    public void cityDateIsValidAndEqualsToday() throws IOException {
+        String city = "Tartu";
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date expectedDate = new Date();
+
+        CityDTO cityDTO = weatherAPI.getCityLocaleDetails(city);
+
+        assertEquals(dateFormatter.format(expectedDate), cityDTO.getDt().getFormattedDate());
+
+    }
 }
