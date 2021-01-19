@@ -1,10 +1,7 @@
 package ee.taltech.testing.courseproject.services;
 
-import ee.taltech.testing.courseproject.API.WeatherAPI;
 import ee.taltech.testing.courseproject.configuration.Configuration;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileWriter;
