@@ -32,17 +32,17 @@ Every city that has a valid name will have its report generated in the same fold
 
 # Running the application
 
-Output files go in the same folder as input which would be `/input`
+To run the application locally just download the repository and navigate to the **root** directory of the project.
 
-To run the application locally just download the repository and navigate to the root directory.
+---
 
-In your preferred terminal run the following commands
+In your preferred terminal run the following commands for the following actions
 
 ### To run the application
 ```
 ./gradlew bootRun
 ```
-This will run the application with whatever contents are currently in your `/input/input.txt`
+This will run the application and generate reports on Cities that are currently in your `/input/input.txt`
 
 ### To run the application tests
 ```
