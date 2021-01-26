@@ -1,4 +1,6 @@
-# Testing Course Project
+# TDD Weather Project
+TDD practice project done for TalTech testing course which reads city names from a text file, calls for relevant API data from OpenWeatherMap and generates current weather and
+3 day forecast data and writes it into a json file for every city that OWM has data on. Uses Gitlab CI/CD, might set up relevant CI for GitHub.
 
 ## Project author
 - Magnus Muru
